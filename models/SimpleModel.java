@@ -10,11 +10,16 @@ import javax.swing.table.AbstractTableModel;
 public
 class SimpleModel extends AbstractTableModel {
 	SimpleDateFormat ft = new SimpleDateFormat ("dd.mm.yyyy");
-
 	  Vector<Contact> textData = new Vector<Contact>();
+	  private String[] columnNames = {"ID", "first name", "last name","phone number","date"};
+	 
+	  @Override
+	  public String getColumnName(int column) {
+		    return columnNames[column];
+		}
 	  
 	  public void clearText(){
-		  
+		  System.out.println(columnNames[1]);
 		  textData.clear();
 		  fireTableDataChanged();
 	  }

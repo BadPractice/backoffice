@@ -1,82 +1,50 @@
 
 
 import java.awt.BorderLayout;
-import java.awt.LayoutManager;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Vector;
-
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-
-import models.BackModel;
 import models.Contact;
+
 import models.SimpleModel;
 
-public class ContactBrowser extends JPanel implements ActionListener
+ public class ContactBrowser implements ActionListener
  {
-	 /**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	Vector<String> col = null;
-	 LayoutManager mgr = null;
 	 JTable mytable = null;
 	 JButton  buttonSearch= null, buttonEdit= null, buttonDelete=null, buttonAdd=null;
 	 JFrame frame = null;
 	 SimpleModel model = null; 
-	 JTextField inName = null;
-	  //DefaultTableModel model= null;
-//	 SimpleModel aaa = null;
+	 JPanel panel= null;
 	 
 	 ContactBrowser( ) 
 	{
-		
-		
+		 frame = new JFrame("Kontakte");
+		panel=new JPanel(new BorderLayout());
+		frame.getContentPane().add(panel);
 		buttonSearch= new JButton("Search");
 		buttonDelete= new JButton("Delete");
 		buttonEdit= new JButton("Edit");
 		buttonAdd= new JButton("Add");
-		frame = new JFrame("Kontakte");
-		col= new Vector<String>();
-		col.add("id");
-		col.add("name");
-		//mytable.add
-		model = new SimpleModel();
-		System.out.println("fuuuu");
-		//model = new DefaultTableModel(col, Businesslogic.getInstance().getContact());
+		model=new SimpleModel();
 		mytable = new JTable(model);
-		setLayout(new BorderLayout());
+		JPanel buttonPanel = new JPanel(new GridLayout(0,1));
+		JPanel tablePanel = new JPanel(new BorderLayout());
 		//plugging components together
-		frame.getContentPane().add(this);
-		add(buttonSearch);
-		add(buttonEdit);
-		add(buttonDelete);
-		add(buttonAdd);
-		add(mytable);
-		//positioning
-		setLayout(mgr );
-		frame.setSize(800,600);
-		mytable.setLocation(10, 10);
-		mytable.setSize(500, 500);
+		buttonPanel.add(buttonSearch);
+		buttonPanel.add(buttonEdit );
+		buttonPanel.add(buttonDelete);
+		buttonPanel.add(buttonAdd);
+		tablePanel.add(mytable,BorderLayout.WEST);
+		panel.add(buttonPanel, BorderLayout.EAST);
+		panel.add(tablePanel,BorderLayout.CENTER);
 		mytable.setVisible(true);
-		//mytable.setS electionMode(ListSelectionModel.SINGLE_SELECTION);
-
-		buttonSearch.setLocation(520, 10);
-		buttonSearch.setSize(270, 100);
-		buttonDelete.setLocation(520, 120);
-		buttonDelete.setSize(270, 100);
-		buttonEdit.setLocation(520, 230);
-		buttonEdit.setSize(270, 100);
-		buttonAdd.setLocation(520, 340);
-		buttonAdd.setSize(270, 100);
 	    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    frame.setVisible(true);	
-	    //frame.pack();
+	    frame.pack();
 	   listen();
 	}
 	 
@@ -97,9 +65,8 @@ public class ContactBrowser extends JPanel implements ActionListener
 		buttonDelete.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Contact toDelete;
-				toDelete = model.getRow(mytable.getSelectedRow());
-				Businesslogic.getInstance().deleteContact(toDelete);
+
+				Businesslogic.getInstance().deleteContact(model.getRow(mytable.getSelectedRow()));
 				setData();
 			}
 		});
