@@ -2,6 +2,8 @@
 
 import static org.junit.Assert.*;
 
+import models.InputChecker;
+
 import org.junit.Test;
 
 public class InputCheckerTest {

@@ -3,7 +3,8 @@ package interfaces;
 
 import java.util.Vector;
 
-import models.Contact;
+import dataobjects.Contact;
+
 
 
 public interface DataAccessable {

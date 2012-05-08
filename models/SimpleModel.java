@@ -5,6 +5,8 @@ import java.util.Vector;
 
 import javax.swing.table.AbstractTableModel;
 
+import dataobjects.Contact;
+
 
 @SuppressWarnings("serial")
 public
