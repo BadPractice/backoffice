@@ -1,9 +1,13 @@
-package models;
+package mydefault;
 
 public class ErrorHandler {
 	static private ErrorHandler myinstance= null;
 	String error =null;
-	private ErrorHandler(){}
+	Boolean isValid;
+	private ErrorHandler(){
+		error=new String("Unbekannter Fehler");
+		isValid=new Boolean(true);
+	}
 	static public ErrorHandler getInstance(){
 		if ( myinstance == null )
 			myinstance = new ErrorHandler();
@@ -11,23 +15,16 @@ public class ErrorHandler {
 	}
 	public void setError(String argError){
 		error=argError;
+		isValid=false;
 	}
 	public String getError(){
-		if(error==null) return "Unbekannter Fehler";
 		return error;
 	}
-	public void clearError(){
-		error=null;
+	public Boolean isValid(){
+		return isValid;
 	}
-	
-	public boolean isValid(){
-		if(error==null)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	public void resetError(){
+		error = "Unbekannter Fehler";
+		isValid=true;
 	}
 }

@@ -8,28 +8,22 @@ import javax.swing.table.AbstractTableModel;
 import dataobjects.Contact;
 
 
-@SuppressWarnings("serial")
-public
-class SimpleModel extends AbstractTableModel {
-	SimpleDateFormat ft = new SimpleDateFormat ("dd.mm.yyyy");
-	  Vector<Contact> textData = new Vector<Contact>();
-	  private String[] columnNames = {"ID", "first name", "last name","phone number","date"};
+
+public abstract class SimpleModel<T> extends AbstractTableModel {
+	private static final long serialVersionUID = 1L;
+	protected  Vector<T> textData = new Vector<T>();
 	 
-	  @Override
-	  public String getColumnName(int column) {
-		    return columnNames[column];
-		}
+	  
 	  
 	  public void clearText(){
-		  System.out.println(columnNames[1]);
 		  textData.clear();
 		  fireTableDataChanged();
 	  }
-	  public void addText(Vector <Contact> text) {
+	  
+	  public void addText(Vector <T> text) {
 	    textData= text;
 	    fireTableDataChanged();
 	  }
-	  @Override
 	  public int getRowCount() {
 	    return (textData.size());
 	  }
@@ -37,21 +31,6 @@ class SimpleModel extends AbstractTableModel {
 	  public int getColumnCount() {
 	    return 5;
 	  }
-	  public Contact getRow(int row){return textData.get(row);}
-	  public Object getValueAt(int row, int column) {
-	    switch(column){
-	    case 0:
-	    	//System.out.println("presenting" + textData.get(row).getId());
-	    	return textData.get(row).getId();
-		case 1:
-	    	return textData.get(row).getName();
-		case 2:
-			return textData.get(row).getNName();
-		case 3:
-			return textData.get(row).getPhone();
-		case 4:
-			return ft.format(textData.get(row).getDate());
-	    }
-		return null;
-	  }
+	  public T getRow(int row){return textData.get(row);}
+	  public abstract Object getValueAt(int row, int column);
 }
