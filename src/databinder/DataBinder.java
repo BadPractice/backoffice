@@ -8,7 +8,6 @@ import interfaces.Checkable;
 
 import javax.swing.JTextField;
 
-import checker.FloatChecker;
 
 public class DataBinder {
 	public String bindTextfieldToString(JTextField argBox,Checkable<String> argCheck){
@@ -38,8 +37,7 @@ public class DataBinder {
 			return null;
 		}
 		argBox.setBackground(Color.white);
-		String[] mySplitDate = argBox.getText().split("\\.");
-		
+		String[] mySplitDate = argBox.getText().split("\\.");	
 		return Date.valueOf(mySplitDate[2]+"-"+mySplitDate[1]+"-"+mySplitDate[0]);
 	}
 

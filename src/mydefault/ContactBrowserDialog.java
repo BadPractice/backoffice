@@ -22,7 +22,7 @@ class ContactBrowserDialog extends BrowserDialog<Contact>
          { 
          components = new ContactDialogComponents();
          super.doBasics(argContact, components);
-         components.bindFrom(dataObject);
+        // components.bindFrom(dataObject);
          //adding fields to panel
          panel.add(components.getLabelName());
          panel.add(components.getName());
@@ -43,7 +43,7 @@ class ContactBrowserDialog extends BrowserDialog<Contact>
  		components.getButtonOk().addActionListener(new ActionListener() {	
  			@Override
  			public void actionPerformed(ActionEvent e) {
- 				if(components.bindTo(dataObject))
+ 				if(components.bindTo(dataObject)!=false)
  				{
  					if(dataObject.getId()==null)
  						Businesslogic.getInstance().addContact(dataObject);

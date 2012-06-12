@@ -20,7 +20,7 @@ import models.ContactTableModel;
 import models.OfferTableModel;
 import models.SimpleModel;
 
- public class ContactBrowser extends Browser<Contact> implements ActionListener, WindowControlable
+ public class ContactBrowser extends Browser<Contact>
  {
 	 
 	 ContactTableModel model;
@@ -87,9 +87,5 @@ import models.SimpleModel;
 		
 	}
 
-	@Override
-	public boolean close() {
-		frame.dispose();
-		return false;
-	}
+	
  }

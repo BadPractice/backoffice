@@ -4,7 +4,13 @@ import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
+import dataobjects.Contact;
+
 public class BackModel extends DefaultTableModel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Vector<Contact>   dataVector_;
 
 	

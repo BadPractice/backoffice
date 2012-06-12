@@ -1,5 +1,7 @@
 package mydefault;
 
+import models.Config;
+import models.DummyDatabase;
 import interfaces.DataAccessable;
 
 
@@ -7,7 +9,8 @@ public class Database {
 	static private Database myinstance = null;
 	static DataAccessable mycon = null;
 	private Database(){
-		mycon = new MysqlDatabase();
+		if (Config.getInstance().isDummy())mycon = new DummyDatabase();
+		else mycon = new MysqlDatabase();
 	}
 	static public DataAccessable getInstance()
 	{

@@ -1,5 +1,26 @@
-this is Just a school project of me and one college of me.
-Basically its supposed to be a program where a company could manage there Projects
+EPU - Backoffice
 
+Author: Philipp Hufnagl, Gerborg
 
-Known Bugs: Date function does not work at all
+Backoffice ist ein Program zur Verwaltung von Kunden, Kontakten, Projekten inklusive Projektangebote und deren Finanzen
+
+--------------------
+Version 0.4
+--------------------
+Release
+
+--------------------
+Version 0.3
+--------------------
+Implementierung von Log und Dummy
+
+--------------------
+Version 0.2
+--------------------
+Implementierung von Kontakten
+
+--------------------
+Version 0.1
+--------------------
+Design der grundlegen Layer (DAL,BL,GUI)
+Verbindung zur Datenbank erstellt

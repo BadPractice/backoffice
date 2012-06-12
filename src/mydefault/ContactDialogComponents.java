@@ -49,16 +49,19 @@ public class ContactDialogComponents implements Dialogable<Contact>{
 		argContact.setNName(mybinder.bindTextfieldToString(nName, new NameChecker()));
 		argContact.setPhone(mybinder.bindTextfieldToString(phone, new PhoneChecker()));
 		argContact.setDate(mybinder.bindTextfieldToDate(date, new DateChecker()));
+		
 		return ErrorHandler.getInstance().isValid();
 		
 	}
 	public boolean bindFrom(Contact argContact){
 		DataBinder mybinder =new DataBinder();
-		boolean error = true;
+		ErrorHandler.getInstance().resetError();
+
 		name=mybinder.bindStringToTextField(argContact.getName());
 		nName=mybinder.bindStringToTextField(argContact.getNName());
 		phone=mybinder.bindStringToTextField(argContact.getPhone());
 		date=mybinder.bindDateToTextField(argContact.getDate());
-		return error;
+		
+		return ErrorHandler.getInstance().isValid();
 	}
 }

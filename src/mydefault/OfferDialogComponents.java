@@ -3,7 +3,6 @@ package mydefault;
 import interfaces.Dialogable;
 
 
-import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
