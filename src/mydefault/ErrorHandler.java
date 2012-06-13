@@ -13,6 +13,10 @@ public class ErrorHandler {
 			myinstance = new ErrorHandler();
 		return myinstance;
 	}
+	public void clearError(){
+		isValid =true;
+		error=null;
+	}
 	public void setError(String argError){
 		error=argError;
 		isValid=false;

@@ -32,6 +32,8 @@ class ContactBrowserDialog extends BrowserDialog<Contact>
          panel.add(components.getPhone());
          panel.add(components.getLabelDate());
          panel.add(components.getDate());
+         panel.add(components.getLabelCustomer());
+         panel.add(components.getCustomer());
          // Use invokeLater AFTER the dialog is shown 
 
          setModal(true);

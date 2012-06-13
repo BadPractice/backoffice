@@ -1,7 +1,7 @@
 package checker;
 
+import mydefault.ErrorHandler;
 import interfaces.Checkable;
-import models.ErrorHandler;
 
 public class NumberChecker implements Checkable<String> {
 

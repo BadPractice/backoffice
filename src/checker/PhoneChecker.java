@@ -4,7 +4,8 @@ import interfaces.Checkable;
 
 import javax.swing.JTextField;
 
-import models.ErrorHandler;
+import mydefault.ErrorHandler;
+
 
 public class PhoneChecker implements Checkable<String> {
 

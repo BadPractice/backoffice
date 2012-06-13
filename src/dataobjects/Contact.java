@@ -16,6 +16,18 @@ public class Contact {
 		id=argId;
 		return true;
 	}
+	public String getnName() {
+		return nName;
+	}
+	public void setnName(String nName) {
+		this.nName = nName;
+	}
+	public boolean isCustomer() {
+		return isCustomer;
+	}
+	public void setCustomer(boolean isCustomer) {
+		this.isCustomer = isCustomer;
+	}
 	public boolean setName(String argName){
 		name=argName;
 		return true;

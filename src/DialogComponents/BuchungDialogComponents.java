@@ -6,7 +6,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import models.ErrorHandler;
+import mydefault.ErrorHandler;
+
 import checker.DateChecker;
 import checker.NumberChecker;
 import databinder.DataBinder;

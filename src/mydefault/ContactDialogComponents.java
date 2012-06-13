@@ -2,6 +2,7 @@ package mydefault;
 import interfaces.Dialogable;
 import java.text.SimpleDateFormat;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
@@ -18,6 +19,8 @@ public class ContactDialogComponents implements Dialogable<Contact>{
 	private JButton  buttonOk= null;
 	private JLabel labelName = null, labelDate= null, labelNName=null, labelPhone=null;
 	private JLabel errorLabel = null;
+	private JCheckBox customer;
+	private JLabel labelCustomer;
 	ContactDialogComponents(){
 		
 		name = new JTextField("",20);
@@ -28,8 +31,19 @@ public class ContactDialogComponents implements Dialogable<Contact>{
         labelPhone = new JLabel("Telephonnummmer");
         date = new JTextField("",10);
         labelDate = new JLabel("Datum");
+        customer = new JCheckBox("");
+        labelCustomer = new JLabel("is Customer?");
         buttonOk =new JButton("Ok");
         errorLabel= new JLabel("",10);
+	}
+	public JTextField getnName() {
+		return nName;
+	}
+	public JCheckBox getCustomer() {
+		return customer;
+	}
+	public JLabel getLabelCustomer() {
+		return labelCustomer;
 	}
 	public JButton getButtonOk(){return buttonOk;}
 	public JTextField getName(){return name;}
@@ -49,6 +63,7 @@ public class ContactDialogComponents implements Dialogable<Contact>{
 		argContact.setNName(mybinder.bindTextfieldToString(nName, new NameChecker()));
 		argContact.setPhone(mybinder.bindTextfieldToString(phone, new PhoneChecker()));
 		argContact.setDate(mybinder.bindTextfieldToDate(date, new DateChecker()));
+		argContact.setCustomer(mybinder.bindCheckBoxToBoolean(customer));
 		
 		return ErrorHandler.getInstance().isValid();
 		
@@ -61,6 +76,7 @@ public class ContactDialogComponents implements Dialogable<Contact>{
 		nName=mybinder.bindStringToTextField(argContact.getNName());
 		phone=mybinder.bindStringToTextField(argContact.getPhone());
 		date=mybinder.bindDateToTextField(argContact.getDate());
+		customer=mybinder.bindBooleanToCheckBox(argContact.isCustomer());
 		
 		return ErrorHandler.getInstance().isValid();
 	}

@@ -29,11 +29,12 @@ public class MysqlDatabase implements DataAccessable {
 	public boolean addContact(Contact argContact) {
 		PreparedStatement cmd= null;
 		try {
-			cmd = db.prepareStatement("INSERT INTO kontakt (vname, nname, telephon, anfang) VALUES (?, ?, ?, ?)");
+			cmd = db.prepareStatement("INSERT INTO kontakt (vname, nname, telephon, anfang, kunde) VALUES (?, ?, ?, ?, ?)");
 			cmd.setString(1, argContact.getName());
 			cmd.setString(2, argContact.getNName());
 			cmd.setString(3, argContact.getPhone());
 			cmd.setDate(4, argContact.getDate());
+			cmd.setBoolean(5, argContact.isCustomer());
 			cmd.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -48,7 +49,8 @@ public class MysqlDatabase implements DataAccessable {
 										" Set vname = ?, " +
 										" nname = ?, " +
 										" telephon = ?, " +
-										" anfang = ? " +
+										" anfang = ? ," +
+										" kunde = ? " +
 										" WHERE id = ?");
 			try {
 				cmd = db.prepareStatement(myStatement );
@@ -57,7 +59,8 @@ public class MysqlDatabase implements DataAccessable {
 			cmd.setString(2, argContact.getNName());
 			cmd.setString(3, argContact.getPhone());
 			cmd.setDate(4, argContact.getDate());
-			cmd.setInt(5, argContact.getId());
+			cmd.setBoolean(5, argContact.isCustomer());
+			cmd.setInt(6, argContact.getId());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -98,6 +101,7 @@ public class MysqlDatabase implements DataAccessable {
 					mycontact.setNName(rd.getString(3));
 					mycontact.setPhone(rd.getString(4));
 					mycontact.setDate(rd.getDate(5));
+					mycontact.setCustomer(rd.getBoolean(6));
 					result.add(mycontact);
 				}
 			} catch (SQLException e) {
@@ -128,7 +132,6 @@ public class MysqlDatabase implements DataAccessable {
 	public boolean addOffer(Offer argOffer) {
 		PreparedStatement cmd= null;
 		try {
-			//cmd = db.prepareStatement("INSERT INTO [kontakt] ([vname], [nname], [telephon], [anfang]) VALUES (?, ?, ?, ?)");
 			cmd = db.prepareStatement("INSERT INTO offer (chance, sum, date, duration, customerid, projectid) VALUES (?, ?, ?, ?, ?, ?)");
 			cmd.setFloat(1, argOffer.getChance());
 			cmd.setInt(2, argOffer.getSum());
@@ -140,12 +143,7 @@ public class MysqlDatabase implements DataAccessable {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		try {
-			cmd.executeUpdate();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		return true;
 	}
 

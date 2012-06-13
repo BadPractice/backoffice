@@ -18,7 +18,7 @@ public class ContactTableModel extends SimpleModel<Contact>{
 	  }
 	  @Override
 	  public int getColumnCount() {
-	    return 5;
+	    return 6;
 	  }
 	//  public Contact getRow(int row){return textData.get(row);}
 	  public Object getValueAt(int row, int column) {
@@ -34,6 +34,9 @@ public class ContactTableModel extends SimpleModel<Contact>{
 			return textData.get(row).getPhone();
 		case 4:
 			return ft.format(textData.get(row).getDate());
+		case 5:
+			if(textData.get(row).isCustomer()) return "Yes";
+			return "No";
 	    }
 		return null;
 	  }
